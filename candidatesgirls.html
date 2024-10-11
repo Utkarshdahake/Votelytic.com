@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Candidate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img class="logo" src="logo.webp" alt="Logo">
+
+    <div class="container5">
+        <header>
+            <h1>Select Your Candidate</h1>
+        </header>
+
+        <main>
+            <h2>Girl's Candidates</h2>
+            <form id="votingForm" onsubmit="return validateCandidateSelection()"> 
+                <div class="candidate">
+                    <img class="img" src="cg1.avif" alt="Candidate 1">
+                    <label for="candidateg1">Candidate 1</label>
+                    <input type="radio" id="candidateg1" name="candidateg" value="Candidateg 1">
+                </div>
+
+                <div class="candidate">
+                    <img class="img" src="cg2.jpg" alt="Candidate 2">
+                    <label for="candidateg2">Candidate 2</label>
+                    <input type="radio" id="candidateg2" name="candidateg" value="Candidateg 2">
+                </div>
+
+                <div class="candidate">
+                    <img class="img" src="cg3.jpeg" alt="Candidate 3">
+                    <label for="candidateg3">Candidate 3</label>
+                    <input type="radio" id="candidateg3" name="candidateg" value="Candidateg 3">
+                </div>
+
+                <div class="candidate">
+                    <img class="img" src="cg4.webp" alt="Candidate 4">
+                    <label for="candidateg4">Candidate 4</label>
+                    <input type="radio" id="candidateg4" name="candidateg" value="Candidateg 4">
+                </div>
+                <br>
+
+                <button type="submit">Submit Vote</button>
+                <br>
+            </form>
+        </main>
+    </div>
+
+    <script>
+        function validateCandidateSelection() {
+            var candidateSelected = document.querySelector('input[name="candidateg"]:checked');
+            
+            if (!candidateSelected) {
+                alert("Please select a candidate before submitting.");
+                return false; 
+            }
+
+            window.location.href = "confirmation.html";
+            return false; 
+        }
+    </script>
+</body>
+</html>

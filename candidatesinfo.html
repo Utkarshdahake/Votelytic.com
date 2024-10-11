@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidate Information</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img class="logo" src="logo.webp" alt="Logo">
+
+    <div class="container3">
+        <h1>Candidate Information</h1>
+
+        <h2>Select Your Year</h2>
+        <form id="votingForm" onsubmit="return validateForm()">
+            <div class="candidate">
+                <input type="radio" id="1stYear" name="Year" value="1st Year">
+                <label for="1stYear">1st Year</label>
+            </div>
+            <div class="candidate">
+                <input type="radio" id="2ndYear" name="Year" value="2nd Year">
+                <label for="2ndYear">2nd Year</label>
+            </div>
+            <div class="candidate">
+                <input type="radio" id="3rdYear" name="Year" value="3rd Year">
+                <label for="3rdYear">3rd Year</label>
+            </div>
+            <div class="candidate">
+                <input type="radio" id="4thYear" name="Year" value="4th Year">
+                <label for="4thYear">4th Year</label>
+            </div>
+            <br>
+
+            <h2>Select Your Department</h2>
+            <div class="candidate">
+                <input type="radio" id="CSE" name="Branch" value="CSE">
+                <label for="CSE">CSE</label>
+            </div>
+            <div class="candidate">
+                <input type="radio" id="ME" name="Branch" value="ME">
+                <label for="ME">ME</label>
+            </div>
+            <div class="candidate">
+                <input type="radio" id="ETC" name="Branch" value="ETC">
+                <label for="ETC">ETC</label>
+            </div>
+            <div class="candidate">
+                <input type="radio" id="CE" name="Branch" value="CE">
+                <label for="CE">CE</label>
+            </div>
+            <br>
+
+            <button type="submit">Submit Vote</button>
+            <br>
+        </form>
+    </div>
+
+    <script>
+        
+        function validateForm() {
+            var yearSelected = document.querySelector('input[name="Year"]:checked');
+            var branchSelected = document.querySelector('input[name="Branch"]:checked');
+
+            if (!yearSelected || !branchSelected) {
+                alert("Please select both your Year and Department before submitting.");
+                return false;
+            }
+
+            window.location.href = "candidates.html";
+            return false;
+        }
+    </script>
+</body>
+</html>

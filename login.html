@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Votelytic Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img class="logo" src="logo.webp" alt="Logo">
+    
+    <div class="container1">
+        <h1>Login</h1>
+        <br>
+        <form id="loginForm" action="index.html" method="get" onsubmit="return validcap()"> <!-- Ensure form points to index.html -->
+            <input class="login" type="text" placeholder="Username" name="Username" id="username" required>
+            <br><br>
+
+            <input class="login" type="password" placeholder="Password" name="password" id="password" required>
+            <br><br>
+
+            <div class="contain2">
+                <input type="text" id="capt" readonly="readonly" placeholder="Captcha">
+                <div id="refresh"> 
+                    <img src="refresh.png" width="50px" alt="Refresh Captcha" onclick="cap()">
+                </div>
+                <br><br>
+
+                <input type="text" id="textinput" placeholder="Enter Captcha" required>
+                <button type="button" onclick="validcap()">Check Captcha</button> <!-- Button to check captcha -->
+            </div>
+            <br>
+
+            <button type="submit">Login</button>
+            <br>
+        </form>
+    </div>
+
+    <!-- JavaScript for captcha generation and validation -->
+    <script>
+        function cap() {
+            var alpha = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 
+                         'W', 'X', 'Y', 'Z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 
+                         'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    
+            var a = alpha[Math.floor(Math.random() * 62)];
+            var b = alpha[Math.floor(Math.random() * 62)];
+            var c = alpha[Math.floor(Math.random() * 62)];
+            var d = alpha[Math.floor(Math.random() * 62)];
+            var e = alpha[Math.floor(Math.random() * 62)];
+            var f = alpha[Math.floor(Math.random() * 62)];
+    
+            var captcha = a + b + c + d + e + f;
+    
+            document.getElementById("capt").value = captcha;
+        }
+
+        function validcap() {
+            var generatedCaptcha = document.getElementById('capt').value;
+            var enteredCaptcha = document.getElementById('textinput').value;
+
+            if (generatedCaptcha === enteredCaptcha) {
+                alert("Captcha is validated successfully.");
+                return true; // Allow form submission
+            } else {
+                alert("Please enter a valid captcha.");
+                return false;
+            }
+        }
+
+        // Generate a captcha when the page loads
+        window.onload = cap;
+    </script>
+</body>
+</html>

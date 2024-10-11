@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Candidate</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <img class="logo" src="logo.webp" alt="Logo">
+    
+    <div class="container4">
+        <header>
+            <h1>Select Your Candidate</h1>
+        </header>
+
+        <main>
+            <h2>Boys Candidates</h2>
+            <form id="votingForm" onsubmit="return validateCandidateSelection()"> <!-- JavaScript form validation -->
+                <div class="candidate">
+                    <img class="img" src="c1.webp" alt="Candidate 1">
+                    <label for="candidate1">Candidate 1</label>
+                    <input type="radio" id="candidate1" name="candidate" value="Candidate 1">
+                </div>
+                
+                <div class="candidate">
+                    <img class="img" src="c2.webp" alt="Candidate 2">
+                    <label for="candidate2">Candidate 2</label>
+                    <input type="radio" id="candidate2" name="candidate" value="Candidate 2">
+                </div>
+                
+                <div class="candidate">
+                    <img class="img" src="c3.webp" alt="Candidate 3">
+                    <label for="candidate3">Candidate 3</label>
+                    <input type="radio" id="candidate3" name="candidate" value="Candidate 3">
+                </div>
+                
+                <div class="candidate">
+                    <img class="img" src="c4.webp" alt="Candidate 4">
+                    <label for="candidate4">Candidate 4</label>
+                    <input type="radio" id="candidate4" name="candidate" value="Candidate 4">
+                </div>
+                <br>
+
+                <button type="submit">Submit Vote</button>
+                <br>
+            </form>
+        </main>
+    </div>
+
+    <script>
+       
+        function validateCandidateSelection() {
+            var candidateSelected = document.querySelector('input[name="candidate"]:checked');
+            
+            if (!candidateSelected) {
+                alert("Please select a candidate before submitting.");
+                return false; 
+            }
+
+            window.location.href = "candidatesgirls.html";
+            return false; 
+        }
+    </script>
+</body>
+</html>

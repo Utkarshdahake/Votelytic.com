@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+    body {
+        background-color: white;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        min-height: 100vh;
+        margin: 0;
+    }
+
+    header {
+        text-align: center;
+        background-color: black;
+        width: 100%;
+        padding: 10px;
+    }
+
+    .hh {
+        color: white;
+        margin: 0;
+    }
+
+    fieldset {
+        width: 60%;
+        padding: 20px;
+        border: 2px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .H {
+        text-align: center;
+        margin-bottom: 10px;
+        background-color: black;
+        width: 100%;
+    }
+
+    .chart {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+        margin: 20px auto;
+        background-color: #f0f0f0;
+    }
+
+    .chartinfo {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .chartinfo div {
+        width: 45%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .chartinfo img {
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+        margin-right: 10px;
+    }
+
+    .chartinfo h3 {
+        font-size: 1.2em;
+        margin: 0;
+    }
+
+    .percentage {
+        margin-left: auto;
+        font-size: 1.2em;
+        color: #333;
+    }
+    </style>
+</head>
+<body>
+    <header class="H">
+        <h1 class="hh">RESULT OF VOTING</h1>
+    </header>
+
+    <fieldset>
+        <legend><h1>Result of Boys CR</h1></legend>
+        <div class="chart" id="chartBoys"></div>
+
+        <div class="chartinfo">
+            <div>
+                <img src="IMG-20240825-WA0001.jpg" alt="Candidate 1">
+                <h3>Candidate 1</h3>
+                <span class="percentage" id="boyCandidate1"></span>
+            </div>
+            <div>
+                <img src="IMG-20240825-WA0003.jpg" alt="Candidate 3">
+                <h3>Candidate 3</h3>
+                <span class="percentage" id="boyCandidate3"></span>
+            </div>
+            <div>
+                <img src="IMG-20240825-WA0002.jpg" alt="Candidate 2">
+                <h3>Candidate 2</h3>
+                <span class="percentage" id="boyCandidate2"></span>
+            </div>
+            <div>
+                <img src="IMG-20240825-WA0004.jpg" alt="Candidate 4">
+                <h3>Candidate 4</h3>
+                <span class="percentage" id="boyCandidate4"></span>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend><h1>Result of Girl CR</h1></legend>
+        <div class="chart" id="chartGirls"></div>
+
+        <div class="chartinfo">
+            <div>
+                <img src="IMG-20240825-WA0001.jpg" alt="Candidate 1">
+                <h3>Candidate 1</h3>
+                <span class="percentage" id="girlCandidate1"></span>
+            </div>
+            <div>
+                <img src="IMG-20240825-WA0003.jpg" alt="Candidate 3">
+                <h3>Candidate 3</h3>
+                <span class="percentage" id="girlCandidate3"></span>
+            </div>
+            <div>
+                <img src="IMG-20240825-WA0002.jpg" alt="Candidate 2">
+                <h3>Candidate 2</h3>
+                <span class="percentage" id="girlCandidate2"></span>
+            </div>
+            <div>
+                <img src="IMG-20240825-WA0004.jpg" alt="Candidate 4">
+                <h3>Candidate 4</h3>
+                <span class="percentage" id="girlCandidate4"></span>
+            </div>
+        </div>
+    </fieldset>
+
+    <script>
+        const boysVotes = {
+            candidate1: 50,
+            candidate2: 30,
+            candidate3: 15,
+            candidate4: 5
+        };
+
+        const girlsVotes = {
+            candidate1: 40,
+            candidate2: 35,
+            candidate3: 15,
+            candidate4: 10
+        };
+
+        function generatePieChart(votes) {
+            const totalVotes = Object.values(votes).reduce((a, b) => a + b, 0);
+            const percentages = Object.values(votes).map(vote => ((vote / totalVotes) * 100).toFixed(2));
+            return percentages;
+        }
+
+        function createPieChartCSS(percentages, colors) {
+            let gradientStops = '';
+            let accumulatedPercent = 0;
+
+            percentages.forEach((percent, index) => {
+                const start = accumulatedPercent;
+                const end = accumulatedPercent + parseFloat(percent);
+                gradientStops += `${colors[index]} ${start}% ${end}%, `;
+                accumulatedPercent = end;
+            });
+
+            return `conic-gradient(${gradientStops.slice(0, -2)})`;
+        }
+
+        const colors = ['pink', 'yellow', 'red', 'navy'];
+
+        const boysPercentages = generatePieChart(boysVotes);
+        document.getElementById('chartBoys').style.background = createPieChartCSS(boysPercentages, colors);
+
+        document.getElementById('boyCandidate1').innerText = boysPercentages[0] + '%';
+        document.getElementById('boyCandidate2').innerText = boysPercentages[1] + '%';
+        document.getElementById('boyCandidate3').innerText = boysPercentages[2] + '%';
+        document.getElementById('boyCandidate4').innerText = boysPercentages[3] + '%';
+
+        const girlsPercentages = generatePieChart(girlsVotes);
+        document.getElementById('chartGirls').style.background = createPieChartCSS(girlsPercentages, colors);
+
+        document.getElementById('girlCandidate1').innerText = girlsPercentages[0] + '%';
+        document.getElementById('girlCandidate2').innerText = girlsPercentages[1] + '%';
+        document.getElementById('girlCandidate3').innerText = girlsPercentages[2] + '%';
+        document.getElementById('girlCandidate4').innerText = girlsPercentages[3] + '%';
+    </script>
+</body>
+</html>
